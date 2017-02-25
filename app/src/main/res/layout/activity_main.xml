@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:background="@color/vk_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.olegsmirnov.homework10.MainActivity">
+
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/login"
+        android:id="@+id/image_login" />
+
+    <ImageView
+        android:id="@+id/image_logout"
+        android:layout_alignParentRight="true"
+        android:visibility="invisible"
+        android:src="@drawable/logout"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+
+    <ImageView
+        android:id="@+id/iv_avatar"
+        android:layout_alignParentLeft="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+    <TextView
+        android:layout_marginLeft="110dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginEnd="35dp"
+        android:textSize="20sp"
+        android:textColor="@color/vk_white"
+        android:fontFamily="sans-serif-smallcaps"
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginLeft="110dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="50dp"
+        android:textSize="18sp"
+        android:textColor="@color/vk_white"
+        android:layout_alignParentTop="true"
+        android:fontFamily="sans-serif-smallcaps"
+        android:id="@+id/tv_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginLeft="110dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="80dp"
+        android:layout_alignParentTop="true"
+        android:textSize="18sp"
+        android:textColor="@color/vk_white"
+        android:fontFamily="sans-serif-smallcaps"
+        android:id="@+id/tv_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="110dp"
+        android:textSize="20sp"
+        android:textColor="@color/vk_white"
+        android:fontFamily="sans-serif-smallcaps"
+        android:id="@+id/tv_birthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="150dp"
+        android:textSize="20sp"
+        android:textColor="@color/vk_white"
+        android:fontFamily="sans-serif-smallcaps"
+        android:id="@+id/tv_last_online"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="190dp"
+        android:textSize="20sp"
+        android:textColor="@color/vk_white"
+        android:fontFamily="sans-serif-smallcaps"
+        android:id="@+id/tv_books"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="290dp"
+        android:textSize="20sp"
+        android:textColor="@color/vk_white"
+        android:fontFamily="sans-serif-smallcaps"
+        android:id="@+id/tv_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="390dp"
+        android:textSize="20sp"
+        android:textColor="@color/vk_white"
+        android:fontFamily="sans-serif-smallcaps"
+        android:id="@+id/tv_interests"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
