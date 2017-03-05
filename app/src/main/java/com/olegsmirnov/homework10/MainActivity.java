@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKSdk;
@@ -28,60 +29,51 @@ import com.vk.sdk.api.model.VKUsersArray;
 import java.io.InputStream;
 import java.util.Date;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tvName;
-    private TextView tvCity;
-    private TextView tvBirthday;
-    private TextView tvCountry;
-    private TextView tvBooks;
-    private TextView tvInterests;
-    private TextView tvLastSeen;
-    private TextView tvAbout;
+    @BindView(R.id.tv_name) TextView tvName;
+    @BindView(R.id.tv_city) TextView tvCity;
+    @BindView(R.id.tv_birthday) TextView tvBirthday;
+    @BindView(R.id.tv_country) TextView tvCountry;
+    @BindView(R.id.tv_books) TextView tvBooks;
+    @BindView(R.id.tv_interests) TextView tvInterests;
+    @BindView(R.id.tv_last_online) TextView tvLastSeen;
+    @BindView(R.id.tv_about) TextView tvAbout;
 
-    private ImageView ivLogin;
-    private ImageView ivLogout;
-    private ImageView ivAvatar;
+    @BindView(R.id.image_login) ImageView ivLogin;
+    @BindView(R.id.image_logout) ImageView ivLogout;
+    @BindView(R.id.iv_avatar) ImageView ivAvatar;
+
+    @OnClick(R.id.image_login)
+    public void loginClick() {
+        VKSdk.login(this);
+    }
+
+    @OnClick(R.id.image_logout)
+    public void logoutClick() {
+        VKSdk.logout();
+        ivAvatar.setVisibility(View.INVISIBLE);
+        ivLogout.setVisibility(View.INVISIBLE);
+        ivLogin.setVisibility(View.VISIBLE);
+        tvName.setText("");
+        tvCity.setText("");
+        tvBirthday.setText("");
+        tvCountry.setText("");
+        tvBooks.setText("");
+        tvInterests.setText("");
+        tvLastSeen.setText("");
+        tvAbout.setText("");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ivLogin = (ImageView) findViewById(R.id.image_login);
-        ivLogout = (ImageView) findViewById(R.id.image_logout);
-        ivAvatar = (ImageView) findViewById(R.id.iv_avatar);
-        tvName = (TextView) findViewById(R.id.tv_name);
-        tvCity = (TextView) findViewById(R.id.tv_city);
-        tvBirthday = (TextView) findViewById(R.id.tv_birthday);
-        tvBooks = (TextView) findViewById(R.id.tv_books);
-        tvCountry = (TextView) findViewById(R.id.tv_country);
-        tvInterests = (TextView) findViewById(R.id.tv_interests);
-        tvLastSeen = (TextView) findViewById(R.id.tv_last_online);
-        tvAbout = (TextView) findViewById(R.id.tv_about);
-        ivLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity activity = (MainActivity) view.getContext();
-                VKSdk.login(activity);
-            }
-        });
-        ivLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                VKSdk.logout();
-                ivAvatar.setVisibility(View.INVISIBLE);
-                ivLogout.setVisibility(View.INVISIBLE);
-                ivLogin.setVisibility(View.VISIBLE);
-                tvName.setText("");
-                tvCity.setText("");
-                tvBirthday.setText("");
-                tvCountry.setText("");
-                tvBooks.setText("");
-                tvInterests.setText("");
-                tvLastSeen.setText("");
-                tvAbout.setText("");
-            }
-        });
+        ButterKnife.bind(this);
     }
 
     @Override
@@ -99,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                         super.onComplete(response);
                         VKUsersArray array = (VKUsersArray) response.parsedModel;
                         VKApiUserFull user = array.get(0);
-                        new DownloadImageTask(ivAvatar).execute(user.photo_100);
+                        Glide.with(getApplicationContext()).load(user.photo_100).into(ivAvatar);
                         ivAvatar.setVisibility(View.VISIBLE);
                         ivLogin.setVisibility(View.INVISIBLE);
                         ivLogout.setVisibility(View.VISIBLE);
@@ -130,27 +122,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-
-        ImageView bmImage;
-
-        DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return mIcon;
-        }
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
-    }
 }
