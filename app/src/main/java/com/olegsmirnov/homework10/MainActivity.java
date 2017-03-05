@@ -3,7 +3,10 @@ package com.olegsmirnov.homework10;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Parcelable;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,18 +30,18 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView tvName;
-    TextView tvCity;
-    TextView tvBirthday;
-    TextView tvCountry;
-    TextView tvBooks;
-    TextView tvInterests;
-    TextView tvLastSeen;
-    TextView tvAbout;
+    private TextView tvName;
+    private TextView tvCity;
+    private TextView tvBirthday;
+    private TextView tvCountry;
+    private TextView tvBooks;
+    private TextView tvInterests;
+    private TextView tvLastSeen;
+    private TextView tvAbout;
 
-    ImageView ivLogin;
-    ImageView ivLogout;
-    ImageView ivAvatar;
+    private ImageView ivLogin;
+    private ImageView ivLogout;
+    private ImageView ivAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 MainActivity activity = (MainActivity) view.getContext();
                 VKSdk.login(activity);
-            }});
+            }
+        });
         ivLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
